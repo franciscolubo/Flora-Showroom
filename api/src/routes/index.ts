@@ -10,12 +10,14 @@ route.route('/categorie')
   .get(getCategorieClothes)
 
 route.route('/')
-  .get(pagesClothes)
   .post(postClothe)
 
 route.route('/:id')
   .get(getById)
   .put(putClothe)
   .delete(deleteClothe)
+
+route.route('/pagination')
+  .post(pagesClothes)
 
 export default route

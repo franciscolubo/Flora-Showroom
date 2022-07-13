@@ -51,6 +51,8 @@ export const getById = async (req: Request, res: Response): Promise<void> => {
   }
 }
 
+// * POST/GET FOR PAGINATION
+
 export const pagesClothes = async (req: Request, res: Response): Promise<void> => {
   try {
     const { page, title, cat }: filter = req.body
@@ -68,8 +70,8 @@ export const pagesClothes = async (req: Request, res: Response): Promise<void> =
     if (page > 0) {
       clothesFiltered = clothesFiltered.slice(((page - 1) * 2), (page * 2))
     }
-
-    res.status(202).json({ clothes: clothesFiltered, pages })
+    console.log(page)
+    res.status(202).json({ clothes: clothesFiltered, allPages: pages, page: page === undefined ? 0 : page })
   } catch (err: any) {
     res.status(404).send(new Error(err))
   }

@@ -13,3 +13,9 @@ export interface ClothesReducer {
     page: number,
     allPages: number,
 }
+
+export interface ClothesAndPages {
+    clothes: CLOTHES[],
+    allPages: number,
+    page: number
+}

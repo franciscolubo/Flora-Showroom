@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import flora from '../images/Flora-Showroom.jpg'
-<<<<<<< HEAD
 import { Container } from '../styles/Landing.styles'
 
 const Landing = () => {
@@ -13,21 +12,6 @@ const Landing = () => {
                 <Link to={'/home'}>Ingresar</Link>
             </div>
         </Container>
-=======
-import { LandingBackground, LandingDiv, SecondDiv } from './Landing.module'
-
-const Landing = () => {
-    return (
-        <LandingDiv>
-            <LandingBackground>
-                <img src={flora} alt="imagen de fondo" />
-            </LandingBackground>
-            <SecondDiv>
-                <h1>Flora Showroom</h1>
-                <Link to='/home'>¡Ingresar!</Link>
-            </SecondDiv>
-        </LandingDiv>
->>>>>>> c5678f72e49e24243afc876f6638e45005e34d08
     )
 }
 

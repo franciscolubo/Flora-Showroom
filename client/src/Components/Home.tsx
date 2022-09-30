@@ -13,6 +13,8 @@ const Home = () => {
     const page = useAppSelector((state) => state.clothes.page)
 
 
+    console.log(location.href === 'http://localhost:3000/home')
+
     let pagination: number[] = []
     if (allPages > 0) {
         for (let i = 1; i <= allPages; i++) {

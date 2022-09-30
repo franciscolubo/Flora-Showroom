@@ -5,6 +5,7 @@ import { AppThunk } from "../store";
 const initialState: ClothesReducer = {
     clothes: [],
     clotheId: {
+        _id: "",
         title: "",
         description: "",
         price: 0,

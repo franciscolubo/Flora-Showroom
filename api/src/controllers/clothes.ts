@@ -70,7 +70,7 @@ export const pagesClothes = async (req: Request, res: Response): Promise<void> =
     if (page > 0) {
       clothesFiltered = clothesFiltered.slice(((page - 1) * 2), (page * 2))
     }
-    console.log(page)
+
     res.status(202).json({ clothes: clothesFiltered, allPages: pages, page: page === undefined ? 0 : page })
   } catch (err: any) {
     res.status(404).send(new Error(err))
@@ -81,14 +81,14 @@ export const pagesClothes = async (req: Request, res: Response): Promise<void> =
 
 export const postClothe = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { title, description, price, stock, image, categorie }: postClothes = req.body
+    const { title, description, price, stock, image, categorie, size }: postClothes = req.body
 
     const created = await Clothe.findOne({
       title
     })
 
     if (!created) {
-      if (!title || !description || !price || !stock || !image || !categorie) {
+      if (!title || !description || !price || !stock || !image || !categorie || size.length === 0) {
         res.status(404).send('Missing data')
       } else {
         await Clothe.create({
@@ -97,7 +97,8 @@ export const postClothe = async (req: Request, res: Response): Promise<void> => 
           price,
           stock,
           image,
-          categorie
+          categorie,
+          size
         })
 
         res.status(201).send('Has been created')

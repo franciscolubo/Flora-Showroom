@@ -6,7 +6,8 @@ export interface postClothes {
     price: number,
     stock: number,
     image: string,
-    categorie: Cat
+    categorie: Cat,
+    size: string[]
 }
 
 export interface filter {

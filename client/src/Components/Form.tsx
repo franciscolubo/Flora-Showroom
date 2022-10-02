@@ -23,7 +23,7 @@ const Form: FunctionComponent = () => {
             console.log(form)
         }
     }, [dispatch])
-    console.log(title)
+    console.log(title) // fcambio
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         e.preventDefault()
         setForm({

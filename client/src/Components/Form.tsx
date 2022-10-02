@@ -27,7 +27,6 @@ const Form: FunctionComponent = () => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         e.preventDefault()
-        console.log(e.target.value)
         setForm({
             ...form,
             [e.target.name]: e.target.value
@@ -36,14 +35,22 @@ const Form: FunctionComponent = () => {
 
     const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>): void => {
         e.preventDefault()
-        console.log(e)
+        setForm({
+            ...form,
+            size: [...form.size].concat(e.target.value)
+        })
+    }
+
+    const handleSubmit = (e: React.FormEvent): void => {
+        e.preventDefault()
+        console.log(form)
     }
 
     return (
         <div>
             <h2>Form</h2>
 
-            <form>
+            <form onSubmit={handleSubmit}>
                 <span>Titulo</span>
                 <input type='text' name="title" placeholder="Titulo" value={form.title} onChange={handleChange} />
 
@@ -71,6 +78,10 @@ const Form: FunctionComponent = () => {
                     <option>XL</option>
                     <option>XXL</option>
                 </select>
+
+                <button>
+                    Press!
+                </button>
             </form>
         </div>
     )

@@ -64,7 +64,6 @@ export const fetchClothes = (page: number): AppThunk => {
                 })
             })
             const data: ClothesAndPages = await response.json()
-            console.log(data)
             return dispatch(getAllClothe({ clothes: data.clothes, allPages: data.allPages, page: data.page }))
         } catch (err) {
             console.log('FetchClothes ERROR', err)

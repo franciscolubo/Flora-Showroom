@@ -9,7 +9,7 @@ const Form: FunctionComponent = () => {
     const { title, categorie, image, price, stock, description, size }: CLOTHES = useAppSelector((state) => state.clothes.clotheId)
     const id: string = useParams().id as string
     const [form, setForm] = useState<CLOTHES>({
-        title: !title ? "" : title,
+        title: title === '' ? "" : title,
         image: !image ? "" : image,
         price: price === 0 ? 0 : price,
         stock: stock === 0 ? 0 : stock,
@@ -17,14 +17,13 @@ const Form: FunctionComponent = () => {
         description: !description ? "" : description,
         size: size.length === 0 ? [] : size
     })
-
-    console.log(id)
     useEffect(() => {
         if (id !== undefined) {
             dispatch(fetchIdClothes(id))
+            console.log(form)
         }
     }, [dispatch])
-
+    console.log(title)
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         e.preventDefault()
         setForm({
@@ -43,7 +42,6 @@ const Form: FunctionComponent = () => {
 
     const handleSubmit = (e: React.FormEvent): void => {
         e.preventDefault()
-        console.log(form)
     }
 
     return (

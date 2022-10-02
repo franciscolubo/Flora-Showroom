@@ -25,7 +25,6 @@ const Home = () => {
     useEffect(() => {
         dispatch(fetchClothes(page))
     }, [])
-
     return (
         <div>
             <Navbar />

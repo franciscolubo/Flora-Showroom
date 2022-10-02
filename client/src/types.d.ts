@@ -1,11 +1,12 @@
 export interface CLOTHES {
-    _id: string,
+    _id?: string,
     title: string,
     description: string,
     price: number,
     stock: number,
-    image: string
-    categorie: string
+    image: string,
+    categorie: string,
+    size: string[]
 };
 
 export interface ClothesReducer {

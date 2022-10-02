@@ -15,6 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Routes>
           <Route path='/' element={<Landing />} />
           <Route path='/home' element={<Home />} />
+          <Route path='/form' element={<Form />} />
           <Route path='/form/:id' element={<Form />} />
           <Route path='/detail/:id' element={<Details />} />
         </Routes>

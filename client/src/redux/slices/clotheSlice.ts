@@ -11,7 +11,8 @@ const initialState: ClothesReducer = {
         price: 0,
         stock: 0,
         image: "",
-        categorie: ""
+        categorie: "",
+        size: []
     },
     page: 1,
     allPages: 0

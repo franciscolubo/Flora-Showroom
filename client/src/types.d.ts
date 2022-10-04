@@ -1,7 +1,8 @@
 export interface CLOTHES {
     _id?: string,
     title: string,
-    description: string,
+    description?: string,
+    discount?: number,
     price: number,
     stock: number,
     image: string,
@@ -20,4 +21,8 @@ export interface ClothesAndPages {
     clothes: CLOTHES[],
     allPages: number,
     page: number
+}
+
+export interface stateClothes {
+    clothes: ClothesReducer
 }

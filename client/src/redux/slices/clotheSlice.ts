@@ -71,4 +71,21 @@ export const fetchClothes = (page: number): AppThunk => {
     }
 }
 
+export const postClothes = (clothe: CLOTHES): AppThunk => {
+    return async () => {
+        try {
+            await fetch(URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(clothe)
+            })
+        }
+        catch (err) {
+            console.log('postClothes ERROR', err)
+        }
+    }
+}
+
 export default clotheReducer.reducer

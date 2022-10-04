@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../hooks/redux"
 import { fetchIdClothes } from "../redux/slices/clotheSlice"
 import { CLOTHES } from "../types"
@@ -24,8 +24,11 @@ export default function Details() {
                     <p>${clotheId.price}</p>
                     <p>{clotheId.stock}</p>
                 </div>
-
             }
+            <button>
+
+                <Link to={`/form/${clotheId._id}`}></Link>
+            </button>
         </div>
     )
 }

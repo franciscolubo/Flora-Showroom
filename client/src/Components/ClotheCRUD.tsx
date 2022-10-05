@@ -1,22 +1,25 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import formValidate from "../helpers/formValidate";
-import { useAppDispatch } from "../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { postClothes } from "../redux/slices/clotheSlice";
-import { ContainerCRUD, FormStyled } from "../styles/ClotheCreate.styles";
-import { CLOTHES } from "../types";
+import { ContainerCRUD, FormStyled } from "../styles/ClotheCRUD.styles";
+import { CLOTHES, stateClothes } from "../types";
 
-export default function ClotheCreate() {
+export default function ClotheCRUD() {
     const dispatch = useAppDispatch()
+    const { id } = useParams<string>()
+    const { title, image, price, stock, categorie, description, size, discount }: CLOTHES = useAppSelector((state: stateClothes) => state.clothes.clotheId)
     const [form, setForm] = useState<CLOTHES>({
-        title: "",
-        image: "",
-        price: 0,
-        stock: 0,
-        categorie: "",
-        description: "",
-        size: [],
-        discount: 0
+        title: !title ? "" : title,
+        image: !image ? "" : image,
+        price: !price ? 0 : price,
+        stock: !stock ? 0 : stock,
+        categorie: !categorie ? "" : categorie,
+        description: !description ? "" : description,
+        size: !size ? [] : size,
+        discount: !discount ? 0 : discount
     })
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -43,6 +46,13 @@ export default function ClotheCreate() {
         })
     }
 
+    const removeSize = (sizeToRemove: string): void => {
+        setForm({
+            ...form,
+            size: form.size.filter((size: string) => size !== sizeToRemove)
+        })
+    }
+
     const handleSubmit = (e: React.FormEvent): void => {
         e.preventDefault()
         if (formValidate(form)) {
@@ -62,7 +72,11 @@ export default function ClotheCreate() {
 
     return (
         <ContainerCRUD>
-            <h2>Crea una prenda</h2>
+            <h2>{
+                id !== undefined
+                    ? 'Actualiza tu prenda'
+                    : 'Crea una prenda'
+            }</h2>
 
             <FormStyled onSubmit={handleSubmit}>
                 <div className="form-group">
@@ -114,18 +128,28 @@ export default function ClotheCreate() {
 
                 <div className="form-group">
                     <button>
-                        ¡Crear!
+                        {
+                            id !== undefined
+                                ? '¡Actualizar!'
+                                : '¡Crear!'
+                        }
                     </button>
                 </div>
             </FormStyled>
 
             <div className="list">
-                <ul>Seleccionaste estos tamaños
+                <ul>
+                    {
+                        form.size.length > 0
+                            ? 'Seleccionaste estos tamaños'
+                            : 'Aun no seleccionaste ningun tamaño'
+                    }
                     {
                         form.size &&
                         form.size.map((size: string, i: number) => {
-                            return <li key={i}>
+                            return <li key={i} className="list-group-item">
                                 {size}
+                                <button onClick={() => removeSize(size)}>X</button>
                             </li>
                         })
                     }

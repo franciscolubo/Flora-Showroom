@@ -12,7 +12,7 @@ export default function Details() {
     useEffect(() => {
         dispatch(fetchIdClothes(id))
     }, [])
-    console.log(clotheId)
+
     return (
         <div>
             {
@@ -27,7 +27,7 @@ export default function Details() {
             }
             <button>
 
-                <Link to={`/form/${clotheId._id}`}></Link>
+                <Link to={`/form/${clotheId._id}`}>Edidat</Link>
             </button>
         </div>
     )

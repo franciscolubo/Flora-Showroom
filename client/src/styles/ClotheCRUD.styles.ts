@@ -14,11 +14,31 @@ export const ContainerCRUD = styled.div`
     .list {
         display: flex;
         flex-direction: column;
-        align-content: center;
+        align-items: center;
 
         ul {
             list-style: none;
+            margin: 0;
+            padding: 0;
 
+            li {
+                width: 100%;
+                font-weight: 500;
+                display: flex;
+                justify-content: space-between;
+
+                button {
+                    background-color: #fff;
+                    border: 1px solid red;
+                    border-radius: 50px;
+                    transition: background-color 400ms, color 400ms;
+                }
+
+                button:hover {
+                    background-color: red;
+                    color: #fff
+                }
+            }
         }
     }
 `

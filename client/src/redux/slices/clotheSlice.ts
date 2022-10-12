@@ -71,6 +71,17 @@ export const fetchClothes = (page: number): AppThunk => {
     }
 }
 
+export const deleteDetail = (): AppThunk => {
+    return (dispatch) => {
+        try {
+            return dispatch(getClothe(initialState.clotheId))
+        }
+        catch (err) {
+            console.log('DeleteDetail ERROR', err)
+        }
+    }
+}
+
 export const postClothes = (clothe: CLOTHES): AppThunk => {
     return async () => {
         try {

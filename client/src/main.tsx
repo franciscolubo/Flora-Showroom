@@ -5,7 +5,7 @@ import store from './redux/store'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './components/Home'
 import Landing from './components/Landing'
-import Details from './components/Details'
+import ClotheDetails from './components/ClotheDetails'
 import ClotheCRUD from './components/ClotheCRUD'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -17,7 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Route path='/home' element={<Home />} />
           <Route path='/form' element={<ClotheCRUD />} />
           <Route path='/form/:id' element={<ClotheCRUD />} />
-          <Route path='/detail/:id' element={<Details />} />
+          <Route path='/detail/:id' element={<ClotheDetails />} />
         </Routes>
       </BrowserRouter>
     </Provider>

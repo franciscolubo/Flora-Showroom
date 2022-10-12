@@ -1,6 +1,6 @@
 import express from 'express'
-import route from './routes'
-import connectDatabase from './db'
+import route from './routes/clotheRoutes'
+import connectDatabase from './database/db'
 import cors from 'cors'
 import 'dotenv/config'
 

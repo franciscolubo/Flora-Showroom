@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { postClothes } from '../types'
+import { postClothes } from '../../types'
 
 const ClotheSchema = new mongoose.Schema<postClothes>({
   title: { type: String, required: true },

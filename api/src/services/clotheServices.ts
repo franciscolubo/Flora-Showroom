@@ -1,5 +1,5 @@
 import Clothe from '../database/models/Clothe'
-import { filter, postClothes } from '../types'
+import { postClothes } from '../types'
 
 const getTitleClothes = async (): Promise<string[]> => {
   try {
@@ -26,20 +26,19 @@ const getCategorieClothes = async (): Promise<string[]> => {
 }
 
 const getById = async (id: string): Promise<postClothes> => {
+  console.log('getById service')
   try {
     const clothe: postClothes = await Clothe.findById(id) as postClothes
 
     return clothe
   } catch (err) {
-    const errorMessage = { code: 500, message: err }
+    const errorMessage = { status: 500, message: err }
     throw errorMessage
   }
 }
 
-const pagesClothes = async (params: filter): Promise<{ pages: number, clothesFiltered: postClothes[] }> => {
+const pagesClothes = async ({ title, cat, page }: any): Promise<{ pages: number, clothesFiltered: postClothes[] }> => {
   try {
-    const { title, cat, page } = params
-
     let clothesFiltered: postClothes[] = await Clothe.find()
 
     if (title) {
@@ -51,7 +50,7 @@ const pagesClothes = async (params: filter): Promise<{ pages: number, clothesFil
     }
 
     const pages: number = Math.ceil(clothesFiltered.length / 2)
-    if (page > 0) {
+    if (page! > 0) {
       clothesFiltered = clothesFiltered.slice(((page - 1) * 2), (page * 2))
     }
 
@@ -92,9 +91,10 @@ const putClothe = async (id: string, updateClothe: postClothes): Promise<postClo
   }
 }
 
-const deleteClothe = async (id: string): Promise<void> => {
+const deleteClothe = async (id: string): Promise<string> => {
   try {
     await Clothe.findByIdAndDelete(id)
+    return 'OK'
   } catch (err) {
     const errorMessage = { status: 500, message: err }
     throw errorMessage

@@ -3,8 +3,10 @@ import route from './routes/clotheRoutes'
 import connectDatabase from './database/db'
 import cors from 'cors'
 import 'dotenv/config'
-import errorHandler from './middleware/errorHandler'
+
 import errorServerHandler from './middleware/errorServerHandler'
+import errorClientHandler from './middleware/errorClientHandler'
+import errorRouteHandler from './middleware/errorRouteHandler'
 
 const server = express()
 connectDatabase()
@@ -16,7 +18,8 @@ server.use(cors())
 // Routes
 server.use('/api/clothes', route)
 server.use(errorServerHandler)
-server.use(errorHandler)
+server.use(errorClientHandler)
+server.use(errorRouteHandler)
 
 const PORT = process.env.PORT
 

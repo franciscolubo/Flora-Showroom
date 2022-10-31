@@ -7,8 +7,8 @@ const getTitleClothes = async (): Promise<string[]> => {
     const titles: string[] = allClothes.map((clothe: postClothes) => { return clothe.title })
 
     return titles
-  } catch (err) {
-    const errorMessage = { status: 500, message: err }
+  } catch (error) {
+    const errorMessage = { status: 500, error }
     throw errorMessage
   }
 }
@@ -19,20 +19,19 @@ const getCategorieClothes = async (): Promise<string[]> => {
     const categories: string[] = allClothes.map((clothe: postClothes) => { return clothe.categorie })
 
     return categories
-  } catch (err) {
-    const errorMessage = { status: 500, message: err }
+  } catch (error) {
+    const errorMessage = { status: 500, error }
     throw errorMessage
   }
 }
 
 const getById = async (id: string): Promise<postClothes> => {
-  console.log('getById service')
   try {
     const clothe: postClothes = await Clothe.findById(id) as postClothes
 
     return clothe
-  } catch (err) {
-    const errorMessage = { status: 500, message: err }
+  } catch (error) {
+    const errorMessage = { status: 500, error }
     throw errorMessage
   }
 }
@@ -55,8 +54,8 @@ const pagesClothes = async ({ title, cat, page }: any): Promise<{ pages: number,
     }
 
     return { pages: pages, clothesFiltered: clothesFiltered }
-  } catch (err) {
-    const errorMessage = { status: 500, message: err }
+  } catch (error) {
+    const errorMessage = { status: 500, error }
     throw errorMessage
   }
 }
@@ -68,14 +67,14 @@ const postClothe = async (newClothe: postClothes, title: string): Promise<postCl
     })
 
     if (!created) {
-      const errorMessage = { status: 'FAILED', message: 'Already exist this clothe' }
+      const errorMessage = { status: 404, message: 'Already exist this clothe' }
       throw errorMessage
     }
     const post = await Clothe.create(newClothe)
     console.log(post)
     return newClothe
-  } catch (err) {
-    const errorMessage = { status: 500, message: err }
+  } catch (error) {
+    const errorMessage = { status: 500, error }
     throw errorMessage
   }
 }
@@ -85,8 +84,8 @@ const putClothe = async (id: string, updateClothe: postClothes): Promise<postClo
     await Clothe.findByIdAndUpdate(id, updateClothe)
 
     return updateClothe
-  } catch (err) {
-    const errorMessage = { status: 500, message: err }
+  } catch (error) {
+    const errorMessage = { status: 500, error }
     throw errorMessage
   }
 }
@@ -94,9 +93,9 @@ const putClothe = async (id: string, updateClothe: postClothes): Promise<postClo
 const deleteClothe = async (id: string): Promise<string> => {
   try {
     await Clothe.findByIdAndDelete(id)
-    return 'OK'
-  } catch (err) {
-    const errorMessage = { status: 500, message: err }
+    return id
+  } catch (error) {
+    const errorMessage = { status: 500, error }
     throw errorMessage
   }
 }

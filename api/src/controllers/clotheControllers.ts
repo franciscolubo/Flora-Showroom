@@ -12,7 +12,7 @@ export const getTitleClothes = (_req: Request, res: Response, next: NextFunction
 
 export const getCategorieClothes = (_req: Request, res: Response, next: NextFunction): void => {
   clotheServices.getCategorieClothes()
-    .then(data => res.status(202).json({ data: data }))
+    .then(data => res.status(202).json({ categories: data }))
     .catch(error => next(error))
 }
 

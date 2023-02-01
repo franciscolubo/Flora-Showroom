@@ -1,15 +1,15 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-    background-color: #f2f1f6;
+    background-color: #eeeee4;
     height: 100vh;
     display: flex;
     flex-direction: column;
-
+    
     img {
         flex: 0.7;
     }
-
+    
     div {
         flex: 0.3;
         text-align: center;
@@ -22,38 +22,41 @@ export const Container = styled.div`
             color: #a26b28;
             margin: auto;
         }
-
+        
         p {
             font-weight: 300;
             margin: 30px 0;
         }
-
+        
         a {
+            position: relative;
             text-decoration: none;
             color: #000;
             letter-spacing: 1px;
             padding-top: 20px;
             font-weight: 500;
-            transition: all 300ms;
+            transition: all .3s;
             padding: 5px;
             border-radius: 10px;
         }
 
         a:hover {
-            background-color: #deaa74;
-            border: 1px solid #000;
-               
+            background-color: #000;
+            color: #fff;
         }
-    }
+}
+
+    
 
     @media screen and (min-width: 450px) {
         img {
             height: 70%;
+            box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
         }
 
         div {
             flex: 1;
-
+            
             h1 {
                 font-weight: 800;
                 letter-spacing: 3px;

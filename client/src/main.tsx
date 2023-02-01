@@ -9,17 +9,17 @@ import ClotheDetails from './components/ClotheDetails'
 import ClotheCRUD from './components/ClotheCRUD'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Landing />} />
-          <Route path='/home' element={<Home />} />
-          <Route path='/form' element={<ClotheCRUD />} />
-          <Route path='/form/:id' element={<ClotheCRUD />} />
-          <Route path='/detail/:id' element={<ClotheDetails />} />
-        </Routes>
-      </BrowserRouter>
-    </Provider>
-  </React.StrictMode>
+
+  <Provider store={store}>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Landing />} />
+        <Route path='/home' element={<Home />} />
+        <Route path='/form' element={<ClotheCRUD />} />
+        <Route path='/form/:id' element={<ClotheCRUD />} />
+        <Route path='/detail/:id' element={<ClotheDetails />} />
+      </Routes>
+    </BrowserRouter>
+  </Provider>
+
 )

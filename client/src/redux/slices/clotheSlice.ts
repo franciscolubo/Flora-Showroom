@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CLOTHES, ClothesAndPages, ClothesReducer } from "../../types";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { CATEGORIES, CLOTHES, ClothesAndPages, ClothesReducer } from "../../types";
 import { AppThunk } from "../store";
 
 const initialState: ClothesReducer = {
@@ -14,6 +14,7 @@ const initialState: ClothesReducer = {
         categorie: "",
         size: []
     },
+    categories: [],
     page: 1,
     allPages: 0
 }
@@ -30,12 +31,14 @@ const clotheReducer = createSlice({
             state.clothes = action.payload.clothes
             state.allPages = action.payload.allPages
             state.page = action.payload.page
+        },
+        getCategorieClothes: (state, action: PayloadAction<CATEGORIES>) => {
+            state.categories = action.payload.categories
         }
-
     },
 })
 
-export const { getClothe, getAllClothe } = clotheReducer.actions
+export const { getClothe, getAllClothe, getCategorieClothes } = clotheReducer.actions
 
 const URL: string = "http://localhost:3001/api/clothes"
 
@@ -54,14 +57,8 @@ export const fetchIdClothes = (id: string): AppThunk => {
 export const fetchClothes = (page: number): AppThunk => {
     return async (dispatch) => {
         try {
-            const response = await fetch(`${URL}/pagination`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    "page": page
-                })
+            const response = await fetch(`${URL}/paginate?page=${page}`, {
+                method: 'GET',
             })
             const data: ClothesAndPages = await response.json()
             return dispatch(getAllClothe({ clothes: data.clothes, allPages: data.allPages, page: data.page }))
@@ -98,5 +95,19 @@ export const postClothes = (clothe: CLOTHES): AppThunk => {
         }
     }
 }
+
+export const fetchCategorieClothes = (): AppThunk => {
+    return async (dispatch) => {
+        try {
+            const response = await fetch(`${URL}/categories`, { method: 'GET' })
+            const data: CATEGORIES = await response.json()
+            return dispatch(getCategorieClothes({ categories: data.categories }))
+        }
+        catch (err) {
+            console.log('fetchCategorieClothes ERROR', err)
+        }
+    }
+}
+
 
 export default clotheReducer.reducer

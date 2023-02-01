@@ -8,7 +8,7 @@ const Landing = () => {
             <img src={flora} alt="imagen de fondo" />
             <div>
                 <h1>Flora Showroom</h1>
-                <p>Gracias por visitar mi pagina, <strong>presiona en ingresar</strong> y obtene todas las ropas ademas de sus precios</p>
+                <p>Bienvenida a mi tienda, enterate de todas las ofertas y prendas que tenemos para <strong>vos</strong>.</p>
                 <Link to={'/home'}>Ingresar</Link>
             </div>
         </Container>

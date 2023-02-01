@@ -10,9 +10,14 @@ export interface CLOTHES {
     size: string[]
 };
 
+export interface CATEGORIES {
+    categories: string[]
+}
+
 export interface ClothesReducer {
     clothes: CLOTHES[],
     clotheId: CLOTHES,
+    categories: string[],
     page: number,
     allPages: number,
 }

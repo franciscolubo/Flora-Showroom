@@ -1,35 +1,47 @@
-import { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { useAppDispatch, useAppSelector } from "../hooks/redux"
 import { fetchCategorieClothes } from "../redux/slices/clotheSlice"
-import { Nav } from "../styles/Navbar.styles"
+import { CategorieSelector, Nav, SearchBar } from "../styles/Navbar.styles"
 
 export default function Navbar() {
     const dispatch = useAppDispatch()
     const categories: string[] = useAppSelector((state) => state.clothes.categories)
+    const [inputState, setInputState] = useState(false)
+    const [search, setSearch] = useState("")
 
     useEffect(() => {
         dispatch(fetchCategorieClothes())
     }, [])
 
-    console.log(categories)
+    const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearch(e.target.value)
+    }
+
     return (
         <div>
-
             <Nav>
                 <li className="options">
-                    <button>MENU</button>
-                    <button className="categories">CATEGORIAS</button>
-                    <div>
-                        {
-                            categories.map((cat: string, i: number) =>
+                    <button className="categories nav-buttons">CATEGORIAS</button>
+                    <button className="nav-buttons redes-sociales">CONTACTO</button>
+                    <button className="nav-buttons redes-sociales">REDES SOCIALES</button>
+                    <CategorieSelector className="categorieSelector">        
+                        <div>
+                            {
+                                categories.map((cat: string, i: number) =>
                                 <button key={i}>{cat}</button>
-                            )
-                        }
-                    </div>
+                                )
+                            }
+
+                        </div>                           
+                    </CategorieSelector>
                 </li>
                 <li className="search">
-                    <input type="search" />
-                    <button></button>
+                    <SearchBar>
+                        <input type="search" placeholder="Buscar" onChange={(e) => handleInput(e)}/>
+                        <button >
+                                <svg viewBox="0 0 30 30" width="20px"><path d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z"/></svg>
+                            </button>
+                    </SearchBar>
                 </li>
 
             </Nav>

@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const HomeContainer = styled.div`
+    display: flex;
+    flex-direction: column-reverse;
 `
 
 export const HomeCard = styled.div`
@@ -75,12 +77,13 @@ export const Pagination = styled.div`
 
     button {
         border: none;
-        background-color: #FFFFFF;
+        background-color: transparent;
         font-weight: 600;
         text-decoration: underline;
         font-size: 16px;
         letter-spacing: 1px;
         transition: all 200ms;
+        color: #000;
     }
 
     button:hover {

@@ -4,8 +4,8 @@ import * as Bootstrap from 'bootstrap'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { fetchClothes } from '../redux/slices/clotheSlice'
 import { CLOTHES } from '../types'
+import { HomeCard, HomeContainer, Pagination } from '../styles/Home.styles'
 import Navbar from './Navbar'
-import { HomeCard, Pagination } from '../styles/Home.styles'
 
 const Home = () => {
     const dispatch = useAppDispatch()
@@ -23,8 +23,7 @@ const Home = () => {
         dispatch(fetchClothes(page))
     }, [])
     return (
-        <div>
-            <Navbar />
+        <HomeContainer>
             {
                 clothes ?
                     <div className="py-5">
@@ -76,7 +75,8 @@ const Home = () => {
                     </div>
                     : <h2>loading</h2>
             }
-        </div>
+            <Navbar />
+        </HomeContainer>
     )
 }
 

@@ -1,5 +1,5 @@
 import Clothe from '../database/models/Clothe'
-import { postClothes } from '../types'
+import { Cat, filter, postClothes } from '../types'
 
 const getTitleClothes = async (): Promise<string[]> => {
   try {
@@ -36,7 +36,7 @@ const getById = async (id: string): Promise<postClothes> => {
   }
 }
 
-const pagesClothes = async ({ title, cat, page }: any): Promise<{ pages: number, clothesFiltered: postClothes[] }> => {
+const pagesClothes = async ({ title, cat, page }: filter): Promise<{ pages: number, clothesFiltered: postClothes[], cat: Cat }> => {
   try {
     let clothesFiltered: postClothes[] = await Clothe.find()
 
@@ -53,7 +53,7 @@ const pagesClothes = async ({ title, cat, page }: any): Promise<{ pages: number,
       clothesFiltered = clothesFiltered.slice(((page - 1) * 2), (page * 2))
     }
 
-    return { pages: pages, clothesFiltered: clothesFiltered }
+    return { pages: pages, clothesFiltered: clothesFiltered, cat: cat }
   } catch (error) {
     const errorMessage = { status: 500, error }
     throw errorMessage

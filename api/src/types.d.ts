@@ -11,7 +11,7 @@ export interface postClothes {
 }
 
 export interface filter {
-    page: number,
     title: string,
     cat: Cat
+    page: number,
 }

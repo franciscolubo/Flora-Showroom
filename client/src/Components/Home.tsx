@@ -12,6 +12,7 @@ const Home = () => {
     const clothes: CLOTHES[] = useAppSelector((state) => state.clothes.clothes)
     const allPages: number = useAppSelector((state) => state.clothes.allPages)
     const page = useAppSelector((state) => state.clothes.page)
+    const cat = useAppSelector((state) => state.clothes.cat)
 
     let pagination: number[] = []
     if (allPages > 0) {
@@ -20,7 +21,7 @@ const Home = () => {
         }
     }
     useEffect(() => {
-        dispatch(fetchClothes(page))
+        dispatch(fetchClothes(page, cat))
     }, [])
     return (
         <HomeContainer>
@@ -44,13 +45,13 @@ const Home = () => {
                             </div>
                         </div>
                         <Pagination>
-                            <button onClick={() => dispatch(fetchClothes(+page - 1))} className={+page === 1 ? "disabled" : "eneabled"} >ANTERIOR</button>
+                            <button onClick={() => dispatch(fetchClothes((+page - 1), cat))} className={+page === 1 ? "disabled" : "eneabled"} >ANTERIOR</button>
                             {
                                 screen.width >= 1000 ?
                                     <div>
                                         <p>Pagina:</p>
 
-                                        <select onChange={(e) => dispatch(fetchClothes(+e.target.value))}>
+                                        <select onChange={(e) => dispatch(fetchClothes(+e.target.value, cat))}>
                                             {
                                                 pagination.map((i: number) => {
                                                     if (+page === i) {
@@ -70,7 +71,7 @@ const Home = () => {
                                         <p>{page}/{pagination.length}</p>
                                     </div>
                             }
-                            <button onClick={() => dispatch(fetchClothes(+page + 1))} className={+page === pagination[pagination.length - 1] ? "disabled" : "eneabled"} >SIGUIENTE</button>
+                            <button onClick={() => dispatch(fetchClothes((+page + 1), cat))} className={+page === pagination[pagination.length - 1] ? "disabled" : "eneabled"} >SIGUIENTE</button>
                         </Pagination>
                     </div>
                     : <h2>loading</h2>

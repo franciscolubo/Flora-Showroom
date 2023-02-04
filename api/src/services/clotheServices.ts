@@ -1,5 +1,5 @@
 import Clothe from '../database/models/Clothe'
-import { Cat, filter, postClothes } from '../types'
+import { Cat, postClothes } from '../types'
 
 const getTitleClothes = async (): Promise<string[]> => {
   try {
@@ -36,10 +36,10 @@ const getById = async (id: string): Promise<postClothes> => {
   }
 }
 
-const pagesClothes = async ({ title, cat, page }: filter): Promise<{ pages: number, clothesFiltered: postClothes[], cat: Cat }> => {
+const pagesClothes = async ({ title, cat, page }: any): Promise<{ pages: number, clothesFiltered: postClothes[], cat: Cat }> => {
   try {
     let clothesFiltered: postClothes[] = await Clothe.find()
-
+    const clothesPerPage = 4
     if (title) {
       clothesFiltered = clothesFiltered.filter((cloth: postClothes) => cloth.title.toLowerCase().includes(title))
     }
@@ -48,9 +48,9 @@ const pagesClothes = async ({ title, cat, page }: filter): Promise<{ pages: numb
       clothesFiltered = clothesFiltered.filter((cloth: postClothes) => cloth.categorie === cat)
     }
 
-    const pages: number = Math.ceil(clothesFiltered.length / 2)
+    const pages: number = Math.ceil(clothesFiltered.length / clothesPerPage)
     if (page! > 0) {
-      clothesFiltered = clothesFiltered.slice(((page - 1) * 2), (page * 2))
+      clothesFiltered = clothesFiltered.slice(((page - 1) * clothesPerPage), (page * clothesPerPage))
     }
 
     return { pages: pages, clothesFiltered: clothesFiltered, cat: cat }

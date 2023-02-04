@@ -8,6 +8,7 @@ export const HomeContainer = styled.div`
 export const HomeCard = styled.div`
     max-width: 40vh;
     height: 40vh;
+    width: 40vh;
     max-height: 40vh;
 
     img {

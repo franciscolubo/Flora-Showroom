@@ -23,6 +23,12 @@ const Home = () => {
     useEffect(() => {
         dispatch(fetchClothes(page, cat))
     }, [])
+
+    const handlePage = (numPage: number) => {
+        if (numPage === -1 && page > 1 || numPage === 1 && page < allPages)
+        dispatch(fetchClothes((+page + numPage), cat))
+    }
+
     return (
         <HomeContainer>
             {
@@ -45,7 +51,7 @@ const Home = () => {
                             </div>
                         </div>
                         <Pagination>
-                            <button onClick={() => dispatch(fetchClothes((+page - 1), cat))} className={+page === 1 ? "disabled" : "eneabled"} >ANTERIOR</button>
+                            <button onClick={() => handlePage(-1)} className={+page <= 1 ? "disabled" : "eneabled"} >ANTERIOR</button>
                             {
                                 screen.width >= 1000 ?
                                     <div>
@@ -64,14 +70,14 @@ const Home = () => {
                                             }
                                         </select>
 
-                                        <p>de {pagination.length}</p>
+                                        <p>de {allPages}</p>
                                     </div>
                                     :
                                     <div>
-                                        <p>{page}/{pagination.length}</p>
+                                        <p>{page}/{allPages}</p>
                                     </div>
                             }
-                            <button onClick={() => dispatch(fetchClothes((+page + 1), cat))} className={+page === pagination[pagination.length - 1] ? "disabled" : "eneabled"} >SIGUIENTE</button>
+                            <button onClick={() => handlePage(1)} className={+page >= allPages ? "disabled" : "eneabled"} >SIGUIENTE</button>
                         </Pagination>
                     </div>
                     : <h2>loading</h2>

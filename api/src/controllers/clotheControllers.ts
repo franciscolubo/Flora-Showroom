@@ -33,7 +33,7 @@ export const getById = (req: Request, res: Response, next: NextFunction): void =
 export const pagesClothes = (req: Request, res: Response, next: NextFunction): void => {
   clotheServices.pagesClothes({ ...req.query })
     .then(data => {
-      res.status(202).json({ clothes: data.clothesFiltered, allPages: data.pages, page: req.query.page === undefined ? 0 : req.query.page, cat: data.cat })
+      res.status(202).json({ clothes: data.clothesFiltered, allPages: data.pages, page: req.query.page === undefined ? 0 : req.query.page, cat: data.cat, allClothes: data.allClothes })
     })
     .catch(error => {
       next(error)

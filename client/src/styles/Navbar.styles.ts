@@ -13,14 +13,12 @@ export const Nav = styled.ul`
     .options {
         .nav-buttons {
             margin-left: 15px;
-            font-weight: 600;
-            letter-spacing: .7px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
             background-color: transparent;
             padding-bottom: 10px;
-            border-top: none;
-            border-right: none;
-            border-left: none;
-            border-bottom: 2px solid transparent;
+            border: 2px solid transparent;
+            font-size: 14px;
         }
         .nav-buttons:hover {
             border-bottom: 2px solid #000;
@@ -32,6 +30,7 @@ export const Nav = styled.ul`
 
         .redes-sociales {
             font-weight: 400;
+            letter-spacing: 1.2px;
         }
     }
 
@@ -42,9 +41,10 @@ export const CategorieSelector = styled.div`
         visibility: hidden;
         background-color: #fff;
         width: 100%;
-        height: 20vh;
+        height: 30vh;
         left: 0;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         border-top: 1px solid #ccc;
 
@@ -52,27 +52,46 @@ export const CategorieSelector = styled.div`
             visibility: visible;
         }
 
-        div {
+        .categories-div {
             padding: 10px;
             height: 100%;
             width: 70%;
-            display: flex;  
-            flex-direction: wrap;
+            display: flex;
+            flex-direction: column;
             flex-wrap: wrap;
                 button { 
                     width: auto;
-                    height: 15%;
                     color: #000;
                     border: none;
                     background-color: transparent;
                     font-weight: 200;
-                    font-size: 20px;
+                    font-size: 14px;
                     letter-spacing: 0.8px;
                 }
 
                 button:hover {
                     text-decoration: underline #000;
                 }
+        }
+
+        .all-clothes {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            border-top: 1px solid #ccc;
+            padding: 10px 0px;
+
+            button {
+                border: none;
+                background-color: transparent;
+                font-size: 14px;
+                font-weight: 600;
+                letter-spacing: .5px;
+            }
+
+            button:hover {
+                text-decoration: underline #000;
+            }
         }
 `
 

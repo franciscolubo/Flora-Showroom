@@ -2,9 +2,9 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import * as Bootstrap from 'bootstrap'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
-import { fetchClothes } from '../redux/slices/clotheSlice'
+import { fetchClothes, fetchIdClothes } from '../redux/slices/clotheSlice'
 import { CLOTHES } from '../types'
-import { HomeCard, HomeContainer, Pagination } from '../styles/Home.styles'
+import { HomeCard, HomeContainer, Pagination, Title } from '../styles/Home.styles'
 import Navbar from './Navbar'
 
 const Home = () => {
@@ -13,6 +13,7 @@ const Home = () => {
     const allPages: number = useAppSelector((state) => state.clothes.allPages)
     const page = useAppSelector((state) => state.clothes.page)
     const cat = useAppSelector((state) => state.clothes.cat)
+    const allClothes = useAppSelector((state) => state.clothes.allClothes)
 
     let pagination: number[] = []
     if (allPages > 0) {
@@ -26,7 +27,7 @@ const Home = () => {
 
     const handlePage = (numPage: number) => {
         if (numPage === -1 && page > 1 || numPage === 1 && page < allPages)
-        dispatch(fetchClothes((+page + numPage), cat))
+            dispatch(fetchClothes((+page + numPage), cat))
     }
 
     return (
@@ -34,11 +35,21 @@ const Home = () => {
             {
                 clothes ?
                     <div className="py-5">
+                        <div className='title'>
+                            {
+                                cat === "" ? <Title>TODOS LOS PRODUCTOS</Title>
+                                    : <Title>{cat.toUpperCase()}</Title>
+                            }
+                            <p>({allClothes})</p>
+                        </div>
                         <div className="container px-4 px-lg-5 mt-5">
                             <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                                 {
                                     clothes.map((clothe: CLOTHES, i: number) => {
-                                        return <HomeCard key={i} className="col mb-5">
+                                        return <HomeCard key={i} className="col mb-5" onClick={() => {
+                                            dispatch(fetchIdClothes(clothe._id!))
+
+                                        }}>
                                             <div className="card h-100">
                                                 <img src={clothe.image} alt="Imagen de ropa" />
                                                 <p className="price">${clothe.price}</p>

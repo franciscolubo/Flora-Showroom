@@ -20,14 +20,16 @@ export interface ClothesReducer {
     categories: string[],
     page: number,
     allPages: number,
-    cat: string
+    cat: string,
+    allClothes: number
 }
 
 export interface ClothesAndPages {
     clothes: CLOTHES[],
     allPages: number,
     page: number,
-    cat: string
+    cat: string,
+    allClothes: number
 }
 
 export interface stateClothes {

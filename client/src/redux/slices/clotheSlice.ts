@@ -17,7 +17,8 @@ const initialState: ClothesReducer = {
     categories: [],
     page: 1,
     allPages: 0,
-    cat: ""
+    cat: "",
+    allClothes: 0
 }
 
 
@@ -33,6 +34,7 @@ const clotheReducer = createSlice({
             state.allPages = action.payload.allPages
             state.page = action.payload.page
             state.cat = action.payload.cat
+            state.allClothes = action.payload.allClothes
         },
         getCategorieClothes: (state, action: PayloadAction<CATEGORIES>) => {
             state.categories = action.payload.categories
@@ -63,7 +65,7 @@ export const fetchClothes = (page: number, cat: string): AppThunk => {
                 method: 'GET',
             })
             const data: ClothesAndPages = await response.json()
-            return dispatch(getAllClothe({ clothes: data.clothes, allPages: data.allPages, page: data.page, cat: data.cat }))
+            return dispatch(getAllClothe({ clothes: data.clothes, allPages: data.allPages, page: data.page, cat: data.cat, allClothes: data.allClothes }))
         } catch (err) {
             console.log('FetchClothes ERROR', err)
         }

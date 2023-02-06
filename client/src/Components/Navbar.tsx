@@ -28,13 +28,16 @@ export default function Navbar() {
                     <button className="nav-buttons redes-sociales">CONTACTO</button>
                     <button className="nav-buttons redes-sociales">REDES SOCIALES</button>
                     <CategorieSelector className="categorieSelector">
-                        <div>
+                        <div className="categories-div">
                             {
                                 categories.map((cat: string, i: number) =>
                                     <button key={i} onClick={() => handleCategories(cat)}>{cat}</button>
                                 )
                             }
 
+                        </div>
+                        <div className="all-clothes">
+                            <button onClick={() => dispatch(fetchClothes(1, ""))}>Todas las prendas</button>
                         </div>
                     </CategorieSelector>
                 </li>

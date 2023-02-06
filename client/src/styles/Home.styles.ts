@@ -3,6 +3,16 @@ import styled from "styled-components";
 export const HomeContainer = styled.div`
     display: flex;
     flex-direction: column-reverse;
+
+    .title {
+        display: flex;
+
+        p {
+            padding-top: 6px;
+            font-weight: 200;
+            font-size: 14px;
+        }
+    }
 `
 
 export const HomeCard = styled.div`
@@ -96,5 +106,13 @@ export const Pagination = styled.div`
     .disabled {
         visibility: hidden;
     }
+`
 
+export const Title = styled.h1`
+    font-size: 24px;
+    padding-left: 3rem;
+    letter-spacing: 1px;
+    font-weight: 700;
+    font-style: italic;
+    padding-right: 7px;
 `

@@ -36,7 +36,7 @@ const getById = async (id: string): Promise<postClothes> => {
   }
 }
 
-const pagesClothes = async ({ title, cat, page }: any): Promise<{ pages: number, clothesFiltered: postClothes[], cat: Cat }> => {
+const pagesClothes = async ({ title, cat, page }: any): Promise<{ pages: number, clothesFiltered: postClothes[], cat: Cat, allClothes: number }> => {
   try {
     let clothesFiltered: postClothes[] = await Clothe.find()
     const clothesPerPage = 4
@@ -47,13 +47,13 @@ const pagesClothes = async ({ title, cat, page }: any): Promise<{ pages: number,
     if (cat) {
       clothesFiltered = clothesFiltered.filter((cloth: postClothes) => cloth.categorie === cat)
     }
-
+    const allClothes = clothesFiltered.length
     const pages: number = Math.ceil(clothesFiltered.length / clothesPerPage)
     if (page! > 0) {
       clothesFiltered = clothesFiltered.slice(((page - 1) * clothesPerPage), (page * clothesPerPage))
     }
 
-    return { pages: pages, clothesFiltered: clothesFiltered, cat: cat }
+    return { pages: pages, clothesFiltered: clothesFiltered, cat: cat, allClothes: allClothes }
   } catch (error) {
     const errorMessage = { status: 500, error }
     throw errorMessage

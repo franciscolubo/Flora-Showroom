@@ -15,6 +15,7 @@ export default function ClotheDetails() {
             dispatch(fetchIdClothes(id))
             console.log('carge')
         }
+        console.log(clotheId)
         return () => { dispatch(deleteDetail()) }
     }, [])
 

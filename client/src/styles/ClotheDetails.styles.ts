@@ -5,7 +5,7 @@ export const ContainerDetails = styled.div`
 `
 
 export const ImageDetail = styled.div`
-    width: 100%;
+    width: 60%;
     height: 50vh;
     padding: 10px;
 

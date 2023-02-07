@@ -5,7 +5,7 @@ export interface postClothes {
     description: string,
     price: number,
     stock: number,
-    image: string,
+    image: string[],
     categorie: Cat,
     size: string[]
 }

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CATEGORIES, CLOTHES, ClothesAndPages, ClothesReducer } from "../../types";
+import { CATEGORIES, CLOTHES, ClothesAndPages, ClothesReducer, DATA } from "../../types";
 import { AppThunk } from "../store";
 
 const initialState: ClothesReducer = {
@@ -50,8 +50,8 @@ export const fetchIdClothes = (id: string): AppThunk => {
     return async (dispatch) => {
         try {
             const response = await fetch(`${URL}/${id}`, { method: 'GET' })
-            const data: CLOTHES = await response.json()
-            return dispatch(getClothe(data))
+            const data: DATA = await response.json()
+            return dispatch(getClothe(data.data))
         } catch (err) {
             console.log('FetchIdClothes ERROR', err)
         }

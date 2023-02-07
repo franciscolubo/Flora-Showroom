@@ -14,8 +14,8 @@ const Home = () => {
     const page = useAppSelector((state) => state.clothes.page)
     const cat = useAppSelector((state) => state.clothes.cat)
     const allClothes = useAppSelector((state) => state.clothes.allClothes)
-
     let pagination: number[] = []
+
     if (allPages > 0) {
         for (let i = 1; i <= allPages; i++) {
             pagination.push(i)
@@ -46,17 +46,16 @@ const Home = () => {
                             <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                                 {
                                     clothes.map((clothe: CLOTHES, i: number) => {
-                                        return <HomeCard key={i} className="col mb-5" onClick={() => {
-                                            dispatch(fetchIdClothes(clothe._id!))
-
-                                        }}>
-                                            <div className="card h-100">
-                                                <img src={clothe.image} alt="Imagen de ropa" />
-                                                <p className="price">${clothe.price}</p>
-                                                <h4>{clothe.title}</h4>
-                                                <p className="categorie">{clothe.categorie}</p>
-                                            </div>
-                                        </HomeCard>
+                                        return <Link key={i} to={`/detail/${clothe._id}`}>
+                                            <HomeCard className="col mb-5">
+                                                <div className="card h-100">
+                                                    <img src={clothe.image} alt="Imagen de ropa" />
+                                                    <p className="price">${clothe.price}</p>
+                                                    <h4>{clothe.title}</h4>
+                                                    <p className="categorie">{clothe.categorie}</p>
+                                                </div>
+                                            </HomeCard>
+                                        </Link>
                                     })
                                 }
                             </div>

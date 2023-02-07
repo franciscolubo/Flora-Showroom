@@ -35,3 +35,7 @@ export interface ClothesAndPages {
 export interface stateClothes {
     clothes: ClothesReducer
 }
+
+export interface DATA {
+    data: CLOTHES
+}

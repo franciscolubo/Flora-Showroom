@@ -13,7 +13,7 @@ export default function ClotheCRUD() {
     const { title, image, price, stock, categorie, description, size, discount }: CLOTHES = useAppSelector((state: stateClothes) => state.clothes.clotheId)
     const [form, setForm] = useState<CLOTHES>({
         title: !title ? "" : title,
-        image: !image ? "" : image,
+        image: !image ? [] : image,
         price: !price ? 0 : price,
         stock: !stock ? 0 : stock,
         categorie: !categorie ? "" : categorie,
@@ -70,6 +70,14 @@ export default function ClotheCRUD() {
         }
     }
 
+    const addUrlImage = () => {
+        const image = (document.getElementsByName('image')[0] as HTMLInputElement).value
+        setForm({
+            ...form,
+            image: [...form.image].concat(image)
+        })
+    }
+
     return (
         <ContainerCRUD>
             <h2>{
@@ -78,7 +86,7 @@ export default function ClotheCRUD() {
                     : 'Crea una prenda'
             }</h2>
 
-            <FormStyled onSubmit={handleSubmit}>
+            <FormStyled>
                 <div className="form-group">
                     <label>Titulo</label>
                     <input type='text' name="title" className="form-control" placeholder="Titulo" value={form.title} onChange={handleChange} />
@@ -86,7 +94,8 @@ export default function ClotheCRUD() {
 
                 <div className="form-group">
                     <label>URL Imagen</label>
-                    <input type="url" name="image" className="form-control" placeholder="Imagen" value={form.image} onChange={handleChange} />
+                    <input type="url" name="image" className="form-control" placeholder="Imagen" />
+                    <button type='button' onClick={() => addUrlImage()}>Agregar</button>
                 </div>
 
                 <div className="form-group">
@@ -127,7 +136,7 @@ export default function ClotheCRUD() {
                 </div>
 
                 <div className="form-group">
-                    <button>
+                    <button type="submit" onClick={handleSubmit}>
                         {
                             id !== undefined
                                 ? '¡Actualizar!'

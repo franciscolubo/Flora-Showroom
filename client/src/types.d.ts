@@ -5,7 +5,7 @@ export interface CLOTHES {
     discount?: number,
     price: number,
     stock: number,
-    image: string,
+    image: string[],
     categorie: string,
     size: string[]
 };

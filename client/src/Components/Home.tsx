@@ -30,6 +30,7 @@ const Home = () => {
             dispatch(fetchClothes((+page + numPage), cat))
     }
 
+
     return (
         <HomeContainer>
             {
@@ -46,16 +47,16 @@ const Home = () => {
                             <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                                 {
                                     clothes.map((clothe: CLOTHES, i: number) => {
-                                        return <Link key={i} to={`/detail/${clothe._id}`}>
-                                            <HomeCard className="col mb-5">
+                                        return <HomeCard className="col mb-5">
+                                            <Link className="link" key={i} to={`/detail/${clothe._id}`}>
                                                 <div className="card h-100">
-                                                    <img src={clothe.image} alt="Imagen de ropa" />
+                                                    <img src={clothe.image[0]} alt="Imagen de ropa" />
                                                     <p className="price">${clothe.price}</p>
                                                     <h4>{clothe.title}</h4>
                                                     <p className="categorie">{clothe.categorie}</p>
                                                 </div>
-                                            </HomeCard>
-                                        </Link>
+                                            </Link>
+                                        </HomeCard>
                                     })
                                 }
                             </div>

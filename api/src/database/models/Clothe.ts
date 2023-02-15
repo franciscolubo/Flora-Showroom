@@ -6,7 +6,7 @@ const ClotheSchema = new mongoose.Schema<postClothes>({
   description: String,
   price: { type: Number, required: true },
   stock: { type: Number, required: true },
-  image: { type: String, required: true },
+  image: { type: [String], required: true },
   categorie: { type: String, require: true },
   size: { type: [String], require: true }
 })

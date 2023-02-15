@@ -66,13 +66,12 @@ const postClothe = async (newClothe: postClothes, title: string): Promise<postCl
       title
     })
 
-    if (!created) {
+    if (created !== null) {
       const errorMessage = { status: 404, message: 'Already exist this clothe' }
       throw errorMessage
     }
     const post = await Clothe.create(newClothe)
-    console.log(post)
-    return newClothe
+    return post
   } catch (error) {
     const errorMessage = { status: 500, error }
     throw errorMessage

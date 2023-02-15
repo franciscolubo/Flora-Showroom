@@ -13,6 +13,7 @@ export const HomeContainer = styled.div`
             font-size: 14px;
         }
     }
+
 `
 
 export const HomeCard = styled.div`
@@ -20,6 +21,7 @@ export const HomeCard = styled.div`
     height: 40vh;
     width: 40vh;
     max-height: 40vh;
+    
 
     img {
         width: 100%;
@@ -35,19 +37,27 @@ export const HomeCard = styled.div`
         color: #000;
         transition: all .3s;
     }
+    .link {
+        text-decoration: none;
+        color: #000;
 
-    h4 {
-        font-weight: 400;
-        font-size: 18px;
-        padding: 5px 0px 0px 10px
-    }
-
-    .categorie {
-        font-weight: 300;
-        font-size: 15px;
-        padding-left: 10px;
+        h4 {
+            font-weight: 400;
+            font-size: 18px;
+            padding: 5px 0px 0px 10px
+        }
+        
+        .categorie {
+            font-weight: 300;
+            font-size: 15px;
+            padding-left: 10px;
+        }
     }
     
+    div {
+        border: 1px solid transparent;
+    }
+
     div:hover {
         border: 1px solid black;
 
